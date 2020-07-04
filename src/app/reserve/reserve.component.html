@@ -1,0 +1,60 @@
+<div *ngIf="!isReserveOk">
+  <form [formGroup]="reservationForm" (submit)="saveReservation()">
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choisir une date" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+          <mat-select placeholder="choisir une plage horaire " formControlName="time">
+            <mat-option *ngFor="let time of timeOptions" [value]="time">
+              {{time}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="combien de personnes" formControlName="people">
+              <mat-option *ngFor="let person of peopleOptions" [value]="person">
+                {{person}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button type="submit"> confirmer l'horaire </button>  
+  </form>
+</div>
+<!-- f est une variable coté template   -->
+<div *ngIf="isReserveOk">
+  <form #f="ngForm" (submit)= "finalizeReservation(f)">
+      <mat-form-field>
+        <input matInput type="text" name="firstname" [(ngModel)]="client.firstname" placeholder="votre prénom">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput type="text" name="lastname" [(ngModel)]="client.lastname" placeholder="votre nom">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput type="text" name="email" [(ngModel)]="client.email" placeholder="votre email">
+      </mat-form-field> 
+      <br>
+      <mat-form-field>
+          <input matInput type="text" name="phone" [(ngModel)]="client.phone" placeholder="votre tél">
+      </mat-form-field>  
+      <button mat-button type="submit"> réserver </button>
+  </form>
+</div>
+
+
+
+<!-- Cas avec l'utilisation de form Group  -->
+<!-- <form [formGroup]="reservationForm">
+  <input type="date" formControlName="date">
+  <select formControlName="time">
+    <option *ngFor="let time of timeOptions">{{ time }}</option>
+  </select>
+  <select formControlName="people">
+    <option *ngFor="let people of peopleOptions">{{people }}</option>
+  </select>
+</form> -->
+<!-- pour recupérer le type d'objet récupéré 
+{{reservationForm.value | json}} -->

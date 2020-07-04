@@ -1,0 +1,6 @@
+<!-- le parent de 'phone' -->
+<app-phone [user]="standard" (zoom)= "displayBig($event)"></app-phone> <br>
+<app-phone [user]="sommelier" (zoom)= "displayBig($event)"></app-phone> <br>
+<app-phone [user]="boucher" (zoom)= "displayBig($event)"></app-phone>
+
+<div class="phone" *ngIf="numberToDisplay">{{numberToDisplay}}</div>
