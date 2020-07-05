@@ -25,7 +25,8 @@ export class ScheduleService {
                 .get<Schedule>('assets/schedules.json')
                 .pipe(
                   map(res => res.events.filter(evt => evt.title.toLocaleLowerCase().indexOf(termLowerCase) > -1 || 
-                  evt.description.toLocaleLowerCase().indexOf(termLowerCase) > -1))
+                  evt.description.toLocaleLowerCase().indexOf(termLowerCase) > -1)
+                  )
                 );
   }
 
