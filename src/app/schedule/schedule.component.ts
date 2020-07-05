@@ -24,8 +24,9 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     .pipe(
       debounceTime(1000),
       switchMap(term => this.scheduleService.search(term))
-    )
-    .subscribe(data => (this.result = data), err => console.error(err));
+    ) 
+    .subscribe(data => {console.log(data);this.result = data}, err => console.error(err));
+    console.log( this.searchSubscription)
   }
   ngOnDestroy(): void {
     this.searchSubscription.unsubscribe();
